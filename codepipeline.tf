@@ -31,4 +31,6 @@ module "codepipeline" {
   stage1_action_name = ""
   stage1category     = "Build"
   project1           = "<codebuild_projectname>"
+  
+  # add more stages to match what's in module/codepipeline/main.tf as necessary
 }
