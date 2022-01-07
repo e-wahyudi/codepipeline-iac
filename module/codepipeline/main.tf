@@ -64,4 +64,5 @@ resource "aws_codepipeline" "codepipeline" {
       }
     }
   }
+  # Add more stages as desired here...
 }
