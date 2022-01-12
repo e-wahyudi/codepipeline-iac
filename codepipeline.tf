@@ -2,7 +2,7 @@ provider "aws" {
   region = "us-east-1"
 }
 
-# uncomment this block to keep statefile in bucket on S3
+# uncomment this block to keep statefile in S3 bucket
 /* terraform {
   backend "s3" {
     bucket         = "S3 Bucket Name"
