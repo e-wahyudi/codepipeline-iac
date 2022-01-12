@@ -66,3 +66,29 @@ resource "aws_codepipeline" "codepipeline" {
   }
   # Add more stages as desired here...
 }
+
+# Notification via Slack - this assumes that Slack (Chatbot) has already been configured; and this includes
+# the SNS topic that publishes to the Slack Channel
+resource "aws_codestarnotifications_notification_rule" "approval" {
+  detail_type    = "FULL"
+  event_type_ids = ["codepipeline-pipeline-manual-approval-needed"] #notify when approval is pending
+
+  name     = "codepipeline-approval"
+  resource = aws_codepipeline.codepipeline.arn #codepipeline ARN
+
+  target {
+    address = <ARN of SNS Topic>
+  }
+}
+
+resource "aws_codestarnotifications_notification_rule" "approved" {
+  detail_type    = "FULL"
+  event_type_ids = ["codepipeline-pipeline-manual-approval-succeeded"] #notify when approved
+
+  name     = "codepipeline-approved"
+  resource = aws_codepipeline.codepipeline.arn  #codepipeline ARN
+
+  target {
+    address = <ARN of SNS Topic>
+  }
+}
