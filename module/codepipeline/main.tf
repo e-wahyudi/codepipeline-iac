@@ -69,6 +69,7 @@ resource "aws_codepipeline" "codepipeline" {
 
 # Notification via Slack - this assumes that Slack (Chatbot) has already been configured; and this includes
 # the SNS topic that publishes to the Slack Channel
+# This part is optional !!!
 resource "aws_codestarnotifications_notification_rule" "approval" {
   detail_type    = "FULL"
   event_type_ids = ["codepipeline-pipeline-manual-approval-needed"] #notify when approval is pending
